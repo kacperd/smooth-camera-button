@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmoothCameraButton.iml" filepath="$PROJECT_DIR$/SmoothCameraButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smooth-camera-button/library.iml" filepath="$PROJECT_DIR$/smooth-camera-button/library.iml" />
     </modules>
   </component>
 </project>
