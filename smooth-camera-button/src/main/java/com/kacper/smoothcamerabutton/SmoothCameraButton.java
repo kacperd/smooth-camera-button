@@ -23,8 +23,12 @@ public class SmoothCameraButton extends AppCompatButton {
     private boolean touched;
     private float innerCirclePadding;
 
-    Paint whitePaint = new Paint();
-    Paint redPaint = new Paint();
+    private RectF rect = new RectF(0, 0, 0, 0);
+    private Paint strokePaint = new Paint();
+    private Paint insidePaint = new Paint();
+    private int strokeColor;
+    private int insideColor;
+    private int insideActiveColor;
 
     public SmoothCameraButton(Context context) {
         super(context);
@@ -57,6 +61,18 @@ public class SmoothCameraButton extends AppCompatButton {
         this.strokeWidth = strokeWidth;
     }
 
+    public void setStrokeColor(int color) {
+        this.strokeColor = color;
+    }
+
+    public void setInsideColor(int color) {
+        this.insideColor = color;
+    }
+
+    public void setInsideActiveColor(int color) {
+        this.insideActiveColor = color;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
@@ -72,32 +88,30 @@ public class SmoothCameraButton extends AppCompatButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
-        whitePaint.setColor(Color.WHITE);
-        whitePaint.setStrokeWidth(strokeWidth);
-        whitePaint.setAntiAlias(true);
-        whitePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setColor(strokeColor);
+        strokePaint.setStrokeWidth(strokeWidth);
+        strokePaint.setAntiAlias(true);
+        strokePaint.setStyle(Paint.Style.STROKE);
 
-        redPaint.setAntiAlias(true);
-        redPaint.setColor(getResources().getColor(
-                touched ? R.color.camera_active_red : R.color.camera_inactive_red
-        ));
-        redPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-
-//          canvas.drawOval(0, 0, 0, 0, whitePaint);
+        insidePaint.setAntiAlias(true);
+        insidePaint.setColor(touched ? insideActiveColor : insideColor);
+        insidePaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         float size = getHeight() > getWidth() ? getHeight() : getWidth();
         float centerY = getHeight() / 2;
         float centerX = getWidth() / 2;
-        float radius = (size / 2) - 10 ;
+        float radius = (size / 2) - strokeWidth ;
 
-        canvas.drawCircle(centerX, centerY, radius, whitePaint);
+        canvas.drawCircle(centerX, centerY, radius, strokePaint);
 
         float innerRadius = radius - strokeWidth - (innerCirclePadding * 3);
 
-        RectF rect = new RectF(centerX - innerRadius, centerY + innerRadius, centerX + innerRadius, centerY - innerRadius);
+        rect.left = centerX - innerRadius;
+        rect.top = centerY + innerRadius;
+        rect.right = centerX + innerRadius;
+        rect.bottom = centerY - innerRadius;
 
         float rounding = getRounding(innerRadius, innerCirclePadding);
 
@@ -105,13 +119,12 @@ public class SmoothCameraButton extends AppCompatButton {
                 rect,
                 rounding,
                 rounding,
-                redPaint
+                insidePaint
         );
     }
 
     private float getRounding(float innerRadius, float innerCirclePadding) {
         float minimizeFactor = (float) Math.pow(innerCirclePadding / 1.45, 2);
-
         return innerRadius - minimizeFactor;
     }
 
@@ -142,7 +155,12 @@ public class SmoothCameraButton extends AppCompatButton {
 
     private void init() {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
-    }
+        setClipToOutline(false);
+        strokeColor = Color.WHITE;
+        insideColor = getResources().getColor(R.color.camera_inactive_red);
+        insideActiveColor = getResources().getColor(R.color.camera_active_red);
 
+
+    }
 
 }
