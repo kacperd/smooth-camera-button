@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmoothCameraButton.iml" filepath="$PROJECT_DIR$/SmoothCameraButton.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smooth-camera-button/library.iml" filepath="$PROJECT_DIR$/smooth-camera-button/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-app/sample-app.iml" filepath="$PROJECT_DIR$/sample-app/sample-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smooth-camera-button/smooth-camera-button.iml" filepath="$PROJECT_DIR$/smooth-camera-button/smooth-camera-button.iml" />
     </modules>
   </component>
 </project>

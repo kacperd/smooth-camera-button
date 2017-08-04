@@ -1,1 +1,1 @@
-include ':app', ':smooth-camera-button'
+include ':sample-app', ':smooth-camera-button'
