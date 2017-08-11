@@ -90,9 +90,9 @@ public class SmoothCameraButton extends AppCompatButton {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
+        strokePaint.setAntiAlias(true);
         strokePaint.setColor(strokeColor);
         strokePaint.setStrokeWidth(strokeWidth);
-        strokePaint.setAntiAlias(true);
         strokePaint.setStyle(Paint.Style.STROKE);
 
         insidePaint.setAntiAlias(true);
@@ -109,9 +109,9 @@ public class SmoothCameraButton extends AppCompatButton {
         float innerRadius = radius - strokeWidth - (innerCirclePadding * 3);
 
         rect.left = centerX - innerRadius;
-        rect.top = centerY + innerRadius;
+        rect.top = centerY - innerRadius;
         rect.right = centerX + innerRadius;
-        rect.bottom = centerY - innerRadius;
+        rect.bottom = centerY + innerRadius;
 
         float rounding = getRounding(innerRadius, innerCirclePadding);
 
