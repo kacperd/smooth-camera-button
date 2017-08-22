@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
+import android.os.Build;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -155,7 +156,11 @@ public class SmoothCameraButton extends AppCompatButton {
 
     private void init() {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
-        setClipToOutline(false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setClipToOutline(false);
+        }
+
         strokeColor = Color.WHITE;
         insideColor = getResources().getColor(R.color.camera_inactive_red);
         insideActiveColor = getResources().getColor(R.color.camera_active_red);

@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/kacperd/smooth-camera-button'
     gitUrl = 'https://github.com/kacperd/smooth-camera-button.git'
 
-    libraryVersion = '1.0.2-beta'
+    libraryVersion = '1.0.3-beta'
 
     developerId = 'kacperd'
     developerName = 'Kacper Dziubek'
@@ -30,7 +30,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -58,7 +58,7 @@ dependencies {
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = publishedGroupId                               // Maven Group ID for the artifact
+group = publishedGroupId
 
 install {
     repositories.mavenInstaller {
